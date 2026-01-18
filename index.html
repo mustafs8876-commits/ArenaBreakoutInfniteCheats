@@ -293,163 +293,19 @@
 </div><script async="" type="text/javascript" src="https://static.tildacdn.com/js/tilda-performance-1.0.min.js"></script>
 <script async="" type="text/javascript" src="https://static.tildacdn.com/js/tilda-performance-1.0.min.js"></script></body></html>
 
-
+<div class="hero-fx">
+  <div class="hud-lines"></div>
+  <div class="scan-line"></div>
+  <div class="noise"></div>
+</div>
 
 <style>
-	.hero {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-/* === FX CONTAINER === */
-.hero-fx {
-  position: absolute;
-  right: 4%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 420px;
-  height: 420px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* === HUD LINES === */
-.hud-lines {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right, rgba(0,180,255,.25) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,180,255,.15) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(circle, black 55%, transparent 75%);
-  opacity: .45;
-  animation: hud-drift 20s linear infinite;
-}
-
-/* === SCAN LINE === */
-.scan-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0,200,255,.8),
-    transparent
-  );
-  animation: scan 4s linear infinite;
-  opacity: .7;
-}
-
-/* === NOISE === */
-.noise {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-  opacity: .15;
-  mix-blend-mode: overlay;
-}
-
-/* === HOVER REACTION === */
-.hero:hover .hud-lines {
-  opacity: .7;
-  background-size: 40px 40px;
-}
-
-.hero:hover .scan-line {
-  animation-duration: 2s;
-  opacity: 1;
-}
-
-/* === ANIMATIONS === */
-@keyframes scan {
-  0% { top: 0; }
-  100% { top: 100%; }
-}
-
-@keyframes hud-drift {
-  0% { background-position: 0 0; }
-  100% { background-position: 240px 240px; }
-}
-
-/* === MOBILE OFF === */
-@media (max-width: 900px) {
-  .hero-fx {
-    display: none;
-  }
-}
-
 .hero {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
 }
 
-/* контейнер декора */
-.hero-decor {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 360px;
-  height: 360px;
-  pointer-events: none;
-}
-
-/* круги */
-.hero-decor span {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(0, 150, 255, 0.18),
-    transparent 70%
-  );
-  animation: pulse 6s ease-in-out infinite;
-}
-
-/* разные размеры / задержки */
-.hero-decor span:nth-child(2) {
-  transform: scale(1.4);
-  opacity: 0.5;
-  animation-delay: 2s;
-}
-
-.hero-decor span:nth-child(3) {
-  transform: scale(1.9);
-  opacity: 0.3;
-  animation-delay: 4s;
-}
-
-/* анимация */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.15); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.6; }
-}
-
-/* mobile — убираем, чтобы не мешал */
-@media (max-width: 900px) {
-  .hero-decor {
-    display: none;
-  }
-}
-	 <div class="hero-fx">
-    <div class="hud-lines"></div>
-    <div class="scan-line"></div>
-    <div class="noise"></div>
-  </div>
-</div>
-	.hero {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-/* FX container */
 .hero-fx {
   position: absolute;
   right: 4%;
@@ -461,7 +317,6 @@
   z-index: 0;
 }
 
-/* HUD grid */
 .hud-lines {
   position: absolute;
   inset: 0;
@@ -474,7 +329,6 @@
   animation: hud-drift 20s linear infinite;
 }
 
-/* Scan line */
 .scan-line {
   position: absolute;
   left: 0;
@@ -490,7 +344,6 @@
   opacity: .7;
 }
 
-/* Noise */
 .noise {
   position: absolute;
   inset: 0;
@@ -499,7 +352,6 @@
   mix-blend-mode: overlay;
 }
 
-/* Hover reaction */
 .hero:hover .hud-lines {
   background-size: 40px 40px;
   opacity: .7;
@@ -510,24 +362,22 @@
   opacity: 1;
 }
 
-/* Animations */
 @keyframes scan {
-  0% { top: 0; }
-  100% { top: 100%; }
+  from { top: 0; }
+  to { top: 100%; }
 }
 
 @keyframes hud-drift {
-  0% { background-position: 0 0; }
-  100% { background-position: 240px 240px; }
+  from { background-position: 0 0; }
+  to { background-position: 240px 240px; }
 }
 
-/* Mobile off */
 @media (max-width: 900px) {
-  .hero-fx {
-    display: none;
-  }
+  .hero-fx { display: none; }
 }
-.hero-fx { outline: 2px solid red; }
+</style>
+
+	
 
 
 
