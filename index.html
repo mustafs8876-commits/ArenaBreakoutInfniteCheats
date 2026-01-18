@@ -293,31 +293,72 @@
 </div><script async="" type="text/javascript" src="https://static.tildacdn.com/js/tilda-performance-1.0.min.js"></script>
 <script async="" type="text/javascript" src="https://static.tildacdn.com/js/tilda-performance-1.0.min.js"></script></body></html>
 
-<div class="hero">
-  <div class="bg-decor"></div>
+<div class="hero-decor">
+  <span></span>
+  <span></span>
+  <span></span>
 </div>
+
 
 <style>
 .hero {
   position: relative;
-  min-height: 600px; /* ВАЖНО */
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-.bg-decor {
+/* контейнер декора */
+.hero-decor {
   position: absolute;
-  right: 10%;
-  top: 40%;
-  width: 300px;
-  height: 300px;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  height: 360px;
+  pointer-events: none;
+}
+
+/* круги */
+.hero-decor span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(0, 150, 255, 0.15),
+    rgba(0, 150, 255, 0.18),
     transparent 70%
   );
-  pointer-events: none;
-  z-index: 1;
+  animation: pulse 6s ease-in-out infinite;
 }
-</style>
+
+/* разные размеры / задержки */
+.hero-decor span:nth-child(2) {
+  transform: scale(1.4);
+  opacity: 0.5;
+  animation-delay: 2s;
+}
+
+.hero-decor span:nth-child(3) {
+  transform: scale(1.9);
+  opacity: 0.3;
+  animation-delay: 4s;
+}
+
+/* анимация */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* mobile — убираем, чтобы не мешал */
+@media (max-width: 900px) {
+  .hero-decor {
+    display: none;
+  }
+}
+
+
 
 
 
