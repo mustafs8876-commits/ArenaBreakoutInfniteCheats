@@ -293,11 +293,6 @@
 </div><script async="" type="text/javascript" src="https://static.tildacdn.com/js/tilda-performance-1.0.min.js"></script>
 <script async="" type="text/javascript" src="https://static.tildacdn.com/js/tilda-performance-1.0.min.js"></script></body></html>
 
-<div class="hero-decor">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
 
 
 <style>
@@ -442,11 +437,99 @@
     display: none;
   }
 }
-	<div class="hero-fx">
-  <div class="hud-lines"></div>
-  <div class="scan-line"></div>
-  <div class="noise"></div>
+	 <div class="hero-fx">
+    <div class="hud-lines"></div>
+    <div class="scan-line"></div>
+    <div class="noise"></div>
+  </div>
 </div>
+	.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* FX container */
+.hero-fx {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: 420px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HUD grid */
+.hud-lines {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,180,255,.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,180,255,.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle, black 55%, transparent 75%);
+  opacity: .45;
+  animation: hud-drift 20s linear infinite;
+}
+
+/* Scan line */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0,200,255,.8),
+    transparent
+  );
+  animation: scan 4s linear infinite;
+  opacity: .7;
+}
+
+/* Noise */
+.noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  opacity: .15;
+  mix-blend-mode: overlay;
+}
+
+/* Hover reaction */
+.hero:hover .hud-lines {
+  background-size: 40px 40px;
+  opacity: .7;
+}
+
+.hero:hover .scan-line {
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+@keyframes hud-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 240px 240px; }
+}
+
+/* Mobile off */
+@media (max-width: 900px) {
+  .hero-fx {
+    display: none;
+  }
+}
+.hero-fx { outline: 2px solid red; }
+
+
 
 
 
